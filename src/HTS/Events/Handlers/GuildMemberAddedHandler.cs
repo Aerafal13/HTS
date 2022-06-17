@@ -19,7 +19,8 @@ public sealed class GuildMemberAddedHandler : INotificationHandler<GuildMemberAd
 			_configuration.GetRequiredSection("channels")
 			.GetValue<ulong>("welcome"));
 
-		var presentationChannelId = _configuration.GetRequiredSection("channels").GetValue<ulong>("presentation");
+		var presentationChannelId = _configuration.GetRequiredSection("channels")
+			.GetValue<ulong>("presentation");
 
 		var embed = new DiscordEmbedBuilder()
 			.WithAuthor(notification.Args.Member.Username, iconUrl: notification.Args.Member.GetAvatarUrl(ImageFormat.Png))
