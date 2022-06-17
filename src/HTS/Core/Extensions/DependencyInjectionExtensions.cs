@@ -1,4 +1,5 @@
 ﻿using HTS.Core.DependencyInjection;
+using HTS.Core.Scheduling;
 using HTS.Services.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,6 +21,14 @@ public static class DependencyInjectionExtensions
 			.AddSingleton<IHostedService, DiscordCommandHandler>();
 
 	/// <summary>
+	/// Registers the async task scheduler into the <paramref name="services"/>.
+	/// </summary>
+	/// <param name="services">The service collection.</param>
+	/// <returns>The service collection.</returns>
+	public static IServiceCollection AddScheduler(this IServiceCollection services) =>
+		services.AddSingleton<IScheduler, Scheduler>();
+
+	/// <summary>
 	/// Finds all handler types into the <paramref name="provider"/> and call the <see cref="IHostedService.Initialize"/> method.
 	/// </summary>
 	/// <param name="provider">The service provider.</param>
@@ -28,4 +37,11 @@ public static class DependencyInjectionExtensions
 		foreach (var service in provider.GetServices<IHostedService>())
 			service.Initialize();
 	}
+
+	/// <summary>
+	/// Starts the scheduler and wait to any jobs.
+	/// </summary>
+	/// <param name="provider">The service provider.</param>
+	public static Task UseSchedulerAsync(this IServiceProvider provider) =>
+		provider.GetRequiredService<IScheduler>().StartAsync();
 }

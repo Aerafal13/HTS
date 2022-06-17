@@ -52,5 +52,8 @@ services.GetRequiredService<SlashCommandsExtension>()
 
 services.UseHandlers();
 
+await services.UseSchedulerAsync();
+
 await discordClient.ConnectAsync();
+
 await Task.Delay(Timeout.Infinite);
