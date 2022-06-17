@@ -10,7 +10,7 @@ public sealed record Snippet(
 	[property: JsonPropertyName("thumbnails")] Thumbnails Thumbnails,
 	[property: JsonPropertyName("channelTitle")] string ChannelTitle,
 	[property: JsonPropertyName("tags")] IEnumerable<string> Tags,
-	[property: JsonPropertyName("categoryId")] DateTime CategoryId,
+	[property: JsonPropertyName("categoryId")] string CategoryId,
 	[property: JsonPropertyName("liveBroadcastContent")] string LiveBroadcastContent,
 	[property: JsonPropertyName("defaultLanguage")] string DefaultLanguage,
 	[property: JsonPropertyName("localized")] Localized Localized,

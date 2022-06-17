@@ -3,6 +3,7 @@ using DSharpPlus.Interactivity;
 using DSharpPlus.Interactivity.Extensions;
 using DSharpPlus.SlashCommands;
 using HTS.Core.Extensions;
+using HTS.Services;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,12 +44,16 @@ var services = new ServiceCollection()
 	.AddSingleton(discordClient)
 	.AddSingleton(discordClient.UseInteractivity(new InteractivityConfiguration { Timeout = TimeSpan.FromMinutes(2) }))
 	.AddSingleton(x => discordClient.UseSlashCommands(new SlashCommandsConfiguration { Services = x }))
+	.AddTransient<YoutubeService>()
 	.AddMediatR(x => x.AsSingleton(), assembly)
+	.AddScheduler()
 	.AddHandlers()
 	.BuildServiceProvider();
 
 services.GetRequiredService<SlashCommandsExtension>()
-	.RegisterCommands(assembly, configuration.GetValue<ulong>("guild_id"));
+	.RegisterCommands(assembly, configuration
+		.GetRequiredSection("discord")
+		.GetValue<ulong>("guild_id"));
 
 services.UseHandlers();
 

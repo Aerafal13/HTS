@@ -18,6 +18,12 @@ public sealed record YoutubeItem(
 	int CommentCount,
 	IEnumerable<string> Tags)
 {
+	public string VideoUrl =>
+		string.Concat("https://www.youtube.com/watch?v=", VideoId);
+
+	public string ChannelUrl =>
+		string.Concat("https://www.youtube.com/c/", ChannelTitle);
+
 	public string ShortDescription =>
 	   Description.Length > 150
 		   ? string.Concat(Description.AsSpan(0, 150), "...")

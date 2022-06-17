@@ -9,7 +9,7 @@ public sealed class YoutubeService : IDisposable
 	private readonly HttpClient _client;
 	private readonly IConfiguration _configuration;
 
-	private const string ChannelId = "HTSCoding";
+	private const string ChannelId = "UCiPylWTGvM5XM6WIw1XeUXg";
 	private const string ChannelUrl = "https://www.googleapis.com/youtube/v3/search?part=id&maxResults=20&channelId={0}&key={1}";
 	private const string DetailsUrl = "https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&key={0}&id={1}";
 
