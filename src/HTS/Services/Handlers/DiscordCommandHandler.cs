@@ -1,6 +1,8 @@
-﻿namespace HTS.Services.Handlers;
+﻿using HTS.Core.DependencyInjection;
 
-public class DiscordCommandHandler
+namespace HTS.Services.Handlers;
+
+public class DiscordCommandHandler : IHostedService
 {
-
+	public void Initialize() => throw new NotImplementedException();
 }
