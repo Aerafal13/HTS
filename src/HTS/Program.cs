@@ -28,7 +28,7 @@ Log.Logger = new LoggerConfiguration()
 
 var discordClient = new DiscordClient(new DiscordConfiguration
 {
-	Token = configuration["token"],
+	Token = configuration.GetConnectionString("discord_token"),
 	TokenType = TokenType.Bot,
 	Intents = DiscordIntents.All,
 	AlwaysCacheMembers = true,

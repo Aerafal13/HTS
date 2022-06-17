@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace HTS.Services;
 
-public sealed class YoutubeService
+public sealed class YoutubeService : IDisposable
 {
 	private readonly HttpClient _client;
 	private readonly IConfiguration _configuration;
@@ -13,8 +13,8 @@ public sealed class YoutubeService
 	private const string ChannelUrl = "https://www.googleapis.com/youtube/v3/search?part=id&maxResults=20&channelId={0}&key={1}";
 	private const string DetailsUrl = "https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&key={0}&id={1}";
 
-	public YoutubeService(HttpClient client, IConfiguration configuration) =>
-		(_client, _configuration) = (client, configuration);
+	public YoutubeService(IConfiguration configuration) =>
+		(_client, _configuration) = (new(), configuration);
 
 	public async IAsyncEnumerable<YoutubeItem> GetAllVideoDetailsAsync()
 	{
@@ -51,5 +51,11 @@ public sealed class YoutubeService
 						item.Statistics.FavoriteCount,
 						item.Statistics.CommentCount,
 						item.Snippet.Tags);
+	}
+
+	public void Dispose()
+	{
+		_client.Dispose();
+		GC.SuppressFinalize(this);
 	}
 }
