@@ -28,3 +28,7 @@ https://discord.com/api/oauth2/authorize?client_id=CLIENT_ID&permissions=8&scope
 
 ## Connection terminated (4014, 'Disallowed intent(s).')
 ![Intents](https://user-images.githubusercontent.com/87580016/174278833-b345132b-d13c-4de5-b78f-e5f586f73606.png)
+
+## Contributors
+- [@Aerafal13](https://github.com/Aerafal13)
+- [@christophe-mommer](https://github.com/christophe-mommer)
