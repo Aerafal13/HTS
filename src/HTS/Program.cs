@@ -2,6 +2,7 @@
 using DSharpPlus.Interactivity;
 using DSharpPlus.Interactivity.Extensions;
 using DSharpPlus.SlashCommands;
+using HTS.Core.Extensions;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,10 +44,13 @@ var services = new ServiceCollection()
 	.AddSingleton(discordClient.UseInteractivity(new InteractivityConfiguration { Timeout = TimeSpan.FromMinutes(2) }))
 	.AddSingleton(x => discordClient.UseSlashCommands(new SlashCommandsConfiguration { Services = x }))
 	.AddMediatR(x => x.AsSingleton(), assembly)
+	.AddHandlers()
 	.BuildServiceProvider();
 
 services.GetRequiredService<SlashCommandsExtension>()
 	.RegisterCommands(assembly, configuration.GetValue<ulong>("guild_id"));
+
+services.UseHandlers();
 
 await discordClient.ConnectAsync();
 await Task.Delay(Timeout.Infinite);
