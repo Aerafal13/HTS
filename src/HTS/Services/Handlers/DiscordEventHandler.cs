@@ -5,7 +5,10 @@ using MediatR;
 
 namespace HTS.Services.Handlers;
 
-public class DiscordEventHandler : IHostedService
+/// <summary>
+/// Represents a middleware between discord events and MediatR.
+/// </summary>
+public sealed class DiscordEventHandler : IHostedService
 {
 	private readonly DiscordClient _client;
 	private readonly IMediator _mediator;
