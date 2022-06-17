@@ -3,6 +3,7 @@ using DSharpPlus;
 using DSharpPlus.Interactivity;
 using DSharpPlus.Interactivity.Extensions;
 using DSharpPlus.SlashCommands;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -35,15 +36,18 @@ var discordClient = new DiscordClient(new DiscordConfiguration
 	LoggerFactory = new SerilogLoggerFactory()
 });
 
+var assembly = typeof(Program).Assembly;
+
 var services = new ServiceCollection()
 	.AddSingleton<IConfiguration>(configuration)
 	.AddSingleton(discordClient)
 	.AddSingleton(discordClient.UseInteractivity(new InteractivityConfiguration { Timeout = TimeSpan.FromMinutes(2) }))
 	.AddSingleton(x => discordClient.UseSlashCommands(new SlashCommandsConfiguration { Services = x }))
+	.AddMediatR(x => x.AsSingleton(), assembly)
 	.BuildServiceProvider();
 
 services.GetRequiredService<SlashCommandsExtension>()
-	.RegisterCommands(typeof(Program).Assembly, configuration.GetValue<ulong>("guild_id"));
+	.RegisterCommands(assembly, configuration.GetValue<ulong>("guild_id"));
 
 await discordClient.ConnectAsync();
 await Task.Delay(Timeout.Infinite);
