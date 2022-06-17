@@ -1,5 +1,17 @@
+<h1 align="center" style="position: relative;">
+    <img style="border-radius: 50%;" src="HTS.png" width=180/><br>
+    HTS Bot
+</h1>
+
 <p align="center">
-  <img src="docs/HTS.png" width=180/>
+    <img alt="Discord" src="https://img.shields.io/discord/798540792854478869?color=%237289DA&label=discord">
+    <img alt="GitHub" src="https://img.shields.io/github/license/Aerafal13/HTS">
+</p>
+
+<p align="center">
+    <a href="https://github.com/Aerafal13/HTS/blob/main/LICENSE">License</a> •
+    <a href="">Code of Conduct</a> •
+    <a href="">Contributing</a>
 </p>
 
 # HTS
