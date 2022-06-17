@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace HTS.Events.Handlers;
 
-public sealed class ReadyHandler : INotificationHandler<ReadyNotification>
+public sealed class ReadyHandler : MediatR.INotificationHandler<ReadyNotification>
 {
 	private readonly IConfiguration _configuration;
 

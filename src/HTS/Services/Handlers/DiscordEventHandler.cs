@@ -19,5 +19,6 @@ public sealed class DiscordEventHandler : IHostedService
 	public void Initialize()
 	{
 		_client.Ready += (sender, e) => _mediator.Publish(new ReadyNotification(sender, e));
+		_client.GuildMemberAdded += (sender, e) => _mediator.Publish(new GuildMemberAddedNotification(sender, e));
 	}
 }
