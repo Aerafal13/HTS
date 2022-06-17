@@ -10,8 +10,8 @@
 
 <p align="center">
     <a href="https://github.com/Aerafal13/HTS/blob/main/LICENSE">License</a> •
-    <a href="">Code of Conduct</a> •
-    <a href="">Contributing</a>
+    <a href="https://github.com/Aerafal13/HTS/blob/main/.github/CODE_OF_CONDUCT.md">Code of Conduct</a> •
+    <a href="https://github.com/Aerafal13/HTS/blob/main/.github/CONTRIBUTING.md">Contributing</a>
 </p>
 
 # HTS
