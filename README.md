@@ -1,5 +1,5 @@
 <h1 align="center" style="position: relative;">
-    <img style="border-radius: 50%;" src="docs/HTS.png" width=200/><br>
+    <img style="border-radius: 50%;" src="HTS.png" width=200/><br>
     HTS Bot
 </h1>
 
