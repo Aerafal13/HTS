@@ -4,5 +4,5 @@ namespace HTS.Services.Handlers;
 
 public class DiscordCommandHandler : IHostedService
 {
-	public void Initialize() => throw new NotImplementedException();
+	public void Initialize() { }
 }
