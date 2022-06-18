@@ -32,7 +32,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Commands\" />
+	  <Folder Include="Services\Channels\" />
 	</ItemGroup>
 
 </Project>

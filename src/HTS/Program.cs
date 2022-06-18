@@ -10,7 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using Serilog;
-using Serilog.Events;
 using Serilog.Extensions.Logging;
 using Serilog.Sinks.SystemConsole.Themes;
 
@@ -20,9 +19,6 @@ var configuration = new ConfigurationBuilder()
 	.Build();
 
 Log.Logger = new LoggerConfiguration()
-	.MinimumLevel.Override("System", LogEventLevel.Warning)
-	.MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-	.MinimumLevel.Override("DSharpPlus", LogEventLevel.Information)
 	.Enrich.FromLogContext()
 	.WriteTo.Async(x => x.Console(
 		theme: AnsiConsoleTheme.Literate,
@@ -53,15 +49,8 @@ var services = new ServiceCollection()
 	.AddSingleton(new MongoClient(configuration["mongo_db:token"]))
 	.AddScheduler()
 	.AddHandlers()
-	.BuildServiceProvider();
-
-services.GetRequiredService<SlashCommandsExtension>()
-	.RegisterCommands(assembly, configuration
-		.GetRequiredSection("discord")
-		.GetValue<ulong>("guild_id"));
-
-services.UseHandlers();
+	.BuildServiceProvider()
+	.UseHandlers();
 
 await discordClient.ConnectAsync();
-
 await services.UseSchedulerAsync();

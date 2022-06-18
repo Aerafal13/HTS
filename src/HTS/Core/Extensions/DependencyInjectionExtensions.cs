@@ -32,10 +32,13 @@ public static class DependencyInjectionExtensions
 	/// Finds all handler types into the <paramref name="provider"/> and call the <see cref="IHostedService.Initialize"/> method.
 	/// </summary>
 	/// <param name="provider">The service provider.</param>
-	public static void UseHandlers(this IServiceProvider provider)
+	/// <returns>The service provider.</returns>
+	public static IServiceProvider UseHandlers(this IServiceProvider provider)
 	{
 		foreach (var service in provider.GetServices<IHostedService>())
 			service.Initialize();
+
+		return provider;
 	}
 
 	/// <summary>

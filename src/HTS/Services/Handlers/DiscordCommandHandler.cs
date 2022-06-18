@@ -1,6 +1,7 @@
 ﻿using DSharpPlus.SlashCommands;
 using DSharpPlus.SlashCommands.EventArgs;
 using HTS.Core.Schemes;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace HTS.Services.Handlers;
@@ -11,12 +12,15 @@ namespace HTS.Services.Handlers;
 public sealed class DiscordCommandHandler : IHostedService
 {
 	private readonly SlashCommandsExtension _slashCommands;
+	private readonly IConfiguration _configuration;
 
-	public DiscordCommandHandler(SlashCommandsExtension slashCommands) =>
-		_slashCommands = slashCommands;
+	public DiscordCommandHandler(SlashCommandsExtension slashCommands, IConfiguration configuration) =>
+		(_slashCommands, _configuration) = (slashCommands, configuration);
 
 	public void Initialize()
 	{
+		_slashCommands.RegisterCommands(typeof(Program).Assembly, _configuration.GetRequiredSection("discord").GetValue<ulong>("guild_id"));
+
 		_slashCommands.SlashCommandErrored += OnSlashCommandErroredAsync;
 		_slashCommands.SlashCommandExecuted += OnSlashCommandExecutedAsync;
 
