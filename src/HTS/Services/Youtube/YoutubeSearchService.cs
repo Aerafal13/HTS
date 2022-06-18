@@ -60,8 +60,8 @@ public sealed class YoutubeSearchService : IYoutubeSearchService
 					await SendVideoEmbedAsync(searchedVideo, client);
 				}
 			})
-			.Filter(() => DateTime.Now is { DayOfWeek: DayOfWeek.Wednesday, Hour: > 12, Minute: > 40 })
-			.RunAsPeriodically(TimeSpan.FromMinutes(30))
+			.Filter(() => DateTime.Now is { DayOfWeek: DayOfWeek.Wednesday, Hour: > 12, Minute: > 30 })
+			.RunAsPeriodically(TimeSpan.FromMinutes(5))
 			.Build());
 
 	private async Task SendVideoEmbedAsync(YoutubeVideo video, DiscordClient client)
