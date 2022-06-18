@@ -1,5 +1,5 @@
-﻿using HTS.Core.DependencyInjection;
-using HTS.Core.Scheduling;
+﻿using HTS.Core.Scheduling;
+using HTS.Core.Schemes;
 using HTS.Services.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -8,11 +8,11 @@ namespace HTS.Events;
 
 public sealed record GuildMemberAddedNotification(DiscordClient Client, GuildMemberAddEventArgs Args) : INotification;
 
-public sealed class GuildMemberAddedHandler : INotificationHandler<GuildMemberAddedNotification>
+public sealed class GuildMemberAddedEvent : INotificationHandler<GuildMemberAddedNotification>
 {
 	private readonly IConfiguration _configuration;
 
-	public GuildMemberAddedHandler(IConfiguration configuration) =>
+	public GuildMemberAddedEvent(IConfiguration configuration) =>
 		_configuration = configuration;
 
 	public async Task Handle(GuildMemberAddedNotification notification, CancellationToken cancellationToken)

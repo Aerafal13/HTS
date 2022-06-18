@@ -1,5 +1,5 @@
 ﻿using DSharpPlus;
-using HTS.Core.DependencyInjection;
+using HTS.Core.Schemes;
 using HTS.Events;
 using MediatR;
 

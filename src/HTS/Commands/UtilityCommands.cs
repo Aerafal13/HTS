@@ -2,7 +2,7 @@
 using DSharpPlus.Entities;
 using DSharpPlus.SlashCommands;
 using HTS.Core.Extensions;
-using HTS.Services;
+using HTS.Services.Youtube;
 
 namespace HTS.Commands;
 

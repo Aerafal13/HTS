@@ -2,7 +2,7 @@
 using HTS.Models.Youtube;
 using Microsoft.Extensions.Configuration;
 
-namespace HTS.Services;
+namespace HTS.Services.Youtube;
 
 public sealed class YoutubeService : IDisposable
 {

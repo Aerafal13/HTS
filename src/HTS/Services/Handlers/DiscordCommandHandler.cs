@@ -1,6 +1,6 @@
 ﻿using DSharpPlus.SlashCommands;
 using DSharpPlus.SlashCommands.EventArgs;
-using HTS.Core.DependencyInjection;
+using HTS.Core.Schemes;
 using Microsoft.Extensions.Logging;
 
 namespace HTS.Services.Handlers;

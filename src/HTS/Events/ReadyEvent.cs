@@ -9,11 +9,11 @@ namespace HTS.Events;
 
 public sealed record ReadyNotification(DiscordClient Client, ReadyEventArgs Args) : INotification;
 
-public sealed class ReadyHandler : INotificationHandler<ReadyNotification>
+public sealed class ReadyEvent : INotificationHandler<ReadyNotification>
 {
 	private readonly IConfiguration _configuration;
 
-	public ReadyHandler(IConfiguration configuration) =>
+	public ReadyEvent(IConfiguration configuration) =>
 		_configuration = configuration;
 
 	public async Task Handle(ReadyNotification notification, CancellationToken cancellationToken)

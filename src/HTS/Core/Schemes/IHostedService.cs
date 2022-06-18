@@ -1,4 +1,4 @@
-﻿namespace HTS.Core.DependencyInjection;
+﻿namespace HTS.Core.Schemes;
 
 /// <summary>
 /// Defines methods for objects that are managed by the <see cref="IServiceProvider"/>.
