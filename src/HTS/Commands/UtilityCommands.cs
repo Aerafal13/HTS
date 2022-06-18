@@ -17,9 +17,9 @@ public sealed class UtilityCommands : ApplicationCommandModule
 	[SlashCommand("Generate", "Generate all video embeds.")]
 	public async Task GenerateVideosEmbedAsync(InteractionContext ctx)
 	{
-		await foreach (var youtubeVideo in _youtube.GetAllVideoDetailsAsync())
-		{
-			var embed = new DiscordEmbedBuilder()
+		var youtubeVideo = await _youtube.GetLastVideoAsync();
+
+		var embed = new DiscordEmbedBuilder()
 				.WithAuthor($"Nouvelle vidéo de {youtubeVideo.ChannelTitle} !")
 				.WithTitle(string.Concat("**", youtubeVideo.Title, "**"))
 				.WithDescription(youtubeVideo.Description)
@@ -28,8 +28,7 @@ public sealed class UtilityCommands : ApplicationCommandModule
 				.WithColor(new DiscordColor(54, 57, 63))
 				.WithFooter(string.Concat("Publiée le ", youtubeVideo.PublishedAt.ToHumanDate()), ctx.Client.CurrentUser.AvatarUrl);
 
-			await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder()
-					.AddEmbed(embed));
-		}
+		await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder()
+				.AddEmbed(embed));
 	}
 }

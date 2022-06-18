@@ -1,10 +1,12 @@
 ﻿using DSharpPlus;
 using DSharpPlus.Entities;
-using HTS.Events.Notifications;
+using DSharpPlus.EventArgs;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 
-namespace HTS.Events.Handlers;
+namespace HTS.Events;
+
+public sealed record GuildMemberAddedNotification(DiscordClient Client, GuildMemberAddEventArgs Args) : INotification;
 
 public sealed class GuildMemberAddedHandler : INotificationHandler<GuildMemberAddedNotification>
 {

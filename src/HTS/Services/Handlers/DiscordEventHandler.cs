@@ -1,6 +1,6 @@
 ﻿using DSharpPlus;
 using HTS.Core.DependencyInjection;
-using HTS.Events.Notifications;
+using HTS.Events;
 using MediatR;
 
 namespace HTS.Services.Handlers;

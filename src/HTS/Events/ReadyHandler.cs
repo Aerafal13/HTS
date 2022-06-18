@@ -1,11 +1,15 @@
-﻿using DSharpPlus.Entities;
-using HTS.Events.Notifications;
+﻿using DSharpPlus;
+using DSharpPlus.Entities;
+using DSharpPlus.EventArgs;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace HTS.Events.Handlers;
+namespace HTS.Events;
 
-public sealed class ReadyHandler : MediatR.INotificationHandler<ReadyNotification>
+public sealed record ReadyNotification(DiscordClient Client, ReadyEventArgs Args) : INotification;
+
+public sealed class ReadyHandler : INotificationHandler<ReadyNotification>
 {
 	private readonly IConfiguration _configuration;
 
