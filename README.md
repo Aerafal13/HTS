@@ -20,6 +20,7 @@ HTS is a discord bot developed for the HTS Coding community.
 ## Requirements
 - [.NET7 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
 - [Discord bot account](https://discord.com/developers/applications)
+- [MongoDb](https://www.mongodb.com)
 
 Once your bot account is created, you can use the following link to add it to your servers :
 ```
