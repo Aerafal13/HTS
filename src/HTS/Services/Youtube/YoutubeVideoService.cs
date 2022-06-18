@@ -26,9 +26,9 @@ public sealed class YoutubeVideoService : IYoutubeVideoService
 		return videos.FirstOrDefault();
 	}
 
-	public async Task InsertVideoAsync(YoutubeVideo video, CancellationToken cancellationToken = default) =>
-		await _videosBook.InsertOneAsync(video, cancellationToken: cancellationToken);
+	public Task InsertVideoAsync(YoutubeVideo video, CancellationToken cancellationToken = default) =>
+		_videosBook.InsertOneAsync(video, cancellationToken: cancellationToken);
 
-	public async Task ReplaceLastVideoAsync(string lastVideoId, YoutubeVideo newVideo, CancellationToken cancellationToken = default) =>
-		await _videosBook.ReplaceOneAsync(x => x.VideoId == lastVideoId, newVideo, cancellationToken: cancellationToken);
+	public Task ReplaceLastVideoAsync(string lastVideoId, YoutubeVideo newVideo, CancellationToken cancellationToken = default) =>
+		_videosBook.ReplaceOneAsync(x => x.VideoId == lastVideoId, newVideo, cancellationToken: cancellationToken);
 }

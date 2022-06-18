@@ -3,6 +3,7 @@ using DSharpPlus.Interactivity;
 using DSharpPlus.Interactivity.Extensions;
 using DSharpPlus.SlashCommands;
 using HTS.Core.Extensions;
+using HTS.Services.Users;
 using HTS.Services.Youtube;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -47,6 +48,7 @@ var services = new ServiceCollection()
 	.AddSingleton(x => discordClient.UseSlashCommands(new SlashCommandsConfiguration { Services = x }))
 	.AddSingleton<IYoutubeSearchService, YoutubeSearchService>()
 	.AddTransient<IYoutubeVideoService, YoutubeVideoService>()
+	.AddSingleton<IUserService, UserService>()
 	.AddMediatR(x => x.AsSingleton(), assembly)
 	.AddSingleton(new MongoClient(configuration["mongo_db:token"]))
 	.AddScheduler()
