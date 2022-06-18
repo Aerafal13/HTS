@@ -22,6 +22,11 @@ public interface IYoutubeVideoService
 	/// <returns>The last youtube video.</returns>
 	Task<YoutubeVideo?> GetLastVideoAsync(CancellationToken cancellationToken = default);
 
+	/// <summary>
+	/// Inserts a new video.
+	/// </summary>
+	/// <param name="video">The youtube video to insert.</param>
+	/// <param name="cancellationToken">Triggered when the application is closed.</param>
 	Task InsertVideoAsync(YoutubeVideo video, CancellationToken cancellationToken = default);
 
 	/// <summary>
