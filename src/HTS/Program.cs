@@ -7,6 +7,7 @@ using HTS.Services.Youtube;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Driver;
 using Serilog;
 using Serilog.Events;
 using Serilog.Extensions.Logging;
@@ -29,7 +30,7 @@ Log.Logger = new LoggerConfiguration()
 
 var discordClient = new DiscordClient(new DiscordConfiguration
 {
-	Token = configuration.GetConnectionString("discord_token"),
+	Token = configuration["discord:token"],
 	TokenType = TokenType.Bot,
 	Intents = DiscordIntents.All,
 	AlwaysCacheMembers = true,
@@ -44,8 +45,10 @@ var services = new ServiceCollection()
 	.AddSingleton(discordClient)
 	.AddSingleton(discordClient.UseInteractivity(new InteractivityConfiguration { Timeout = TimeSpan.FromMinutes(2) }))
 	.AddSingleton(x => discordClient.UseSlashCommands(new SlashCommandsConfiguration { Services = x }))
-	.AddTransient<YoutubeService>()
+	.AddSingleton<IYoutubeSearchService, YoutubeSearchService>()
+	.AddTransient<IYoutubeVideoService, YoutubeVideoService>()
 	.AddMediatR(x => x.AsSingleton(), assembly)
+	.AddSingleton(new MongoClient(configuration["mongo_db:token"]))
 	.AddScheduler()
 	.AddHandlers()
 	.BuildServiceProvider();

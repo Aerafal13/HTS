@@ -1,29 +1,24 @@
-﻿namespace HTS.Models.Youtube;
+﻿using MongoDB.Bson.Serialization.Attributes;
 
-public sealed record YoutubeItem(
-	string VideoId,
+namespace HTS.Models.Youtube;
+
+public sealed record YoutubeVideo(
+	[property: BsonId] string VideoId,
 	string Title,
 	string Description,
 	string ChannelTitle,
-	string DefaultThumbnailUrl,
-	string MediumThumbnailUrl,
-	string HighThumbnailUrl,
-	string StandardThumbnailUrl,
 	string MaxResThumbnailUrl,
-	DateTime PublishedAt,
-	int ViewCount,
-	int LikeCount,
-	int DislikeCount,
-	int FavoriteCount,
-	int CommentCount,
-	IEnumerable<string> Tags)
+	DateTime PublishedAt)
 {
+	[BsonIgnore]
 	public string VideoUrl =>
 		string.Concat("https://www.youtube.com/watch?v=", VideoId);
 
+	[BsonIgnore]
 	public string ChannelUrl =>
 		string.Concat("https://www.youtube.com/c/", ChannelTitle);
 
+	[BsonIgnore]
 	public string ShortDescription =>
 	   Description.Length > 150
 		   ? string.Concat(Description.AsSpan(0, 150), "...")
