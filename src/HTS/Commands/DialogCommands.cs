@@ -69,4 +69,13 @@ public sealed class DialogCommands : ApplicationCommandModule
 
 
 	}
+
+    [SlashCommand("get", "récupérer le lien redirigeant vers le namespace visé .")]
+    public async Task GetDoc(InteractionContext ctx, [Option("NameSapce" ,
+            "name space à rechercher ( à fournir sans faute svp )") ]
+        string namespac)
+    {
+		
+        await ctx.Channel.SendMessageAsync($"voici le lien que vous avez cherché : https://docs.microsoft.com/fr-fr/dotnet/api/{namespac}?view=net-6.0");
+    }
 }
